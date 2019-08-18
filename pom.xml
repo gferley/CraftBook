@@ -236,7 +236,7 @@
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
+                <version>2.6</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <descriptor>${basedir}/src/main/assembly/default.xml</descriptor>
                 </configuration>
@@ -282,5 +282,40 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+        	<plugins>
+        		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        		<plugin>
+        			<groupId>org.eclipse.m2e</groupId>
+        			<artifactId>lifecycle-mapping</artifactId>
+        			<version>1.0.0</version>
+        			<configuration>
+        				<lifecycleMappingMetadata>
+        					<pluginExecutions>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									com.lukegb.mojo
+        								</groupId>
+        								<artifactId>
+        									gitdescribe-maven-plugin
+        								</artifactId>
+        								<versionRange>
+        									[3.0,)
+        								</versionRange>
+        								<goals>
+        									<goal>gitdescribe</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        					</pluginExecutions>
+        				</lifecycleMappingMetadata>
+        			</configuration>
+        		</plugin>
+        	</plugins>
+        </pluginManagement>
     </build>
 </project>

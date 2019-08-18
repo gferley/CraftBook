@@ -12,16 +12,21 @@ import com.sk89q.craftbook.mechanics.ic.ICVerificationException;
 import com.sk89q.craftbook.util.ItemSyntax;
 import com.sk89q.craftbook.util.ItemUtil;
 import com.sk89q.craftbook.util.SearchArea;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NetherWartsState;
 import org.bukkit.Server;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Cocoa;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.NetherWarts;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -222,8 +227,11 @@ public class Planter extends AbstractSelfTriggeredIC {
             case PUMPKIN_SEEDS:
                 block.setType(Material.PUMPKIN_STEM);
                 return true;
-            case NETHER_WART_BLOCK:
-                block.setType(Material.NETHER_WART);
+            case NETHER_WART:
+            	String dataString = "minecraft:nether_wart[age=0]";
+                BlockData data = Bukkit.createBlockData(dataString);
+                block.setBlockData(data);
+                //block.setType(Material.NETHER_WART);
                 return true;
             case POTATO:
                 block.setType(Material.POTATOES);

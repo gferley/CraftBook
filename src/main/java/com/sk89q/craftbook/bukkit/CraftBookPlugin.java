@@ -104,7 +104,6 @@ import com.sk89q.util.yaml.YAMLFormat;
 import com.sk89q.util.yaml.YAMLProcessor;
 import com.sk89q.wepif.PermissionsResolverManager;
 import io.papermc.lib.PaperLib;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
@@ -718,16 +717,6 @@ public class CraftBookPlugin extends JavaPlugin {
                         return date + "th";
                 }
             }, 20L);
-        }
-
-        try {
-            logDebugMessage("Initializing Metrics!", "startup");
-            Metrics metrics = new Metrics(this);
-
-            metrics.addCustomChart(new Metrics.AdvancedPie("language", () -> languageManager.getLanguages().stream().collect(Collectors.toMap(Function.identity(), o -> 1))));
-            metrics.addCustomChart(new Metrics.SimpleBarChart("enabled_mechanics", () -> mechanics.stream().collect(Collectors.toMap(mech -> mech.getClass().getSimpleName(), o -> 1))));
-        } catch (Throwable e1) {
-            CraftBookBukkitUtil.printStacktrace(e1);
         }
     }
 
